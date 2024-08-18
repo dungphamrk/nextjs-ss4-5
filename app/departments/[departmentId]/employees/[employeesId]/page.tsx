@@ -29,9 +29,8 @@ export default function Page({ params }: PropTypes) {
 
   const department = departments.find((dep) => dep.id === departmentId);
 
-  const employee = employees.map((emp)=>emp.departmentId===departmentId);
-  console.log(department);
-  console.log(employee);
+  const employee = employees.filter((emp)=>emp.departmentId===departmentId);
+
   
   
   return (
@@ -39,7 +38,10 @@ export default function Page({ params }: PropTypes) {
       {department && employee ? (
         <div>
           <h1>Department: {department.name}</h1>
-          <p>Employee: {employee.map((emp)=>(<li> {emp}</li>))}</p>
+          <p>Employee:</p>
+          <ol>
+             {employee.map((emp)=>(<li>{emp.name}</li>))}
+          </ol>
         </div>
       ) : (
         <p>Data not found</p>
